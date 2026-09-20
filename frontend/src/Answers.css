@@ -1,0 +1,246 @@
+/* Answers.css
+   Styles for the conversation, source notes, library documents and upload states.
+   Colours and fonts come from index.css. */
+
+/* ---------- Conversation ---------- */
+
+.turns {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  max-width: 900px;
+}
+
+.turn {
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+
+.turn:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.turn-question {
+  max-width: 42ch;
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.answer-text > p {
+  margin: 0 0 1em;
+  white-space: pre-line;
+}
+
+.answer-text > p:last-child {
+  margin-bottom: 0;
+}
+
+.answer-text code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #eaeef5;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.88em;
+}
+
+/* ---------- Searching, not found, error ---------- */
+
+.searching {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--graphite);
+}
+
+.searching-mark {
+  width: 56px;
+  height: 10px;
+  background: linear-gradient(90deg, transparent 0%, var(--highlighter) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: sweep 1.1s linear infinite;
+}
+
+@keyframes sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.not-found {
+  max-width: 60ch;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--signal-amber);
+}
+
+.not-found-title {
+  margin: 0 0 6px;
+  font-family: var(--font-reading);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.not-found-hint {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--graphite);
+}
+
+.turn-error {
+  max-width: 60ch;
+  margin: 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--signal-red);
+  background: #fbeeec;
+  color: #7d1f17;
+  font-size: 0.95rem;
+}
+
+/* ---------- Source notes: passage button ---------- */
+
+.note-toggle {
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ultramarine);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.note-toggle:hover {
+  color: var(--ink);
+}
+
+.note-excerpt {
+  max-height: 260px;
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  overflow-y: auto;
+  border-left: 3px solid var(--highlighter);
+  background: #f1f4f9;
+  font-family: var(--font-reading);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Library: dropzone states ---------- */
+
+.dropzone {
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone-active {
+  border-color: var(--ultramarine);
+  background: rgba(42, 63, 214, 0.07);
+}
+
+.dropzone-busy {
+  border-style: solid;
+  border-color: var(--rule);
+}
+
+.dropzone-button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-control);
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.dropzone-button:hover {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.progress-bar {
+  position: relative;
+  height: 4px;
+  margin-top: 14px;
+  overflow: hidden;
+  background: var(--rule);
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: var(--ultramarine);
+  animation: slide 1.2s ease-in-out infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+.library-errors {
+  padding: 10px 12px;
+  border-left: 3px solid var(--signal-red);
+  background: #fbeeec;
+  color: #7d1f17;
+  font-size: 0.88rem;
+}
+
+.library-errors ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.library-errors button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Library: document list ---------- */
+
+.doc-list {
+  display: grid;
+  gap: 12px;
+  max-height: 40vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.doc {
+  padding-left: 12px;
+  border-left: 4px solid var(--highlighter);
+}
+
+.doc-name {
+  display: block;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.doc-meta {
+  font-size: 0.85rem;
+  color: var(--graphite);
+  font-variant-numeric: tabular-nums;
+}
